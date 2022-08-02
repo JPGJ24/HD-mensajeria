@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-function Registrarse() {
+const Registrarse = () => {
 
 const [user, setUser] = useState({email: '', password: ''});
 
