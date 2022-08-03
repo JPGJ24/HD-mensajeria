@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
+
 const navbar = (props) =>  {
 
     const history = useHistory()
@@ -17,14 +18,14 @@ const navbar = (props) =>  {
     }
   return (
     
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
                 
                 <div className="container-fluid">
             
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                         </button>
-                        {/* < img src={"/logohd"} alt="" width="30" height="24" className="d-inline-block align-text-top"/> */}
+                        {/* < img src={Logo} alt="logo" width="50" height="50" className="d-inline-block align-text-top rounded-circle mx-3"/> */}
                              <Link className="navbar-brand text-info" to="/">HD MENSAJERIA</Link>
 
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -35,9 +36,9 @@ const navbar = (props) =>  {
                             <li className="nav-item">
                                 <NavLink className="nav-link text-light" to="/Servicios" activeStyle={{ fontWeight: "bold"}}>Servicios</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link text-light" to="/Contactanos" activeStyle={{ fontWeight: "bold"}}>Contactanos</NavLink>
-                            </li>
+                            {/* <li className="nav-item">
+                                <NavLink className="nav-link text-light" to="/mensajeChecked" activeStyle={{ fontWeight: "bold"}}>Contactanos</NavLink>
+                            </li> */}
                             <li className="nav-item">
                                 <NavLink className="nav-link text-light" to="/Trabaja-con-nosotros" activeStyle={{ fontWeight: "bold"}}>Trabaja con nosotros</NavLink>
                             </li>

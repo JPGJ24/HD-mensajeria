@@ -1,5 +1,5 @@
 import React from 'react';
-import Contactanos from './componentes/paginas/Contactanos.js';
+import MensajeChecked from './componentes/paginas/mensajeChecked.js';
 import Navbar from './componentes/navegacion/Navbar.js';
 import Inicio from './componentes/paginas/Inicio.js';
 import Servicios from './componentes/paginas/Servicios.js';
@@ -10,7 +10,7 @@ import Registrarse from './componentes/login/Registrarse.js';
 import RecuperarContraseña from './componentes/login/RecuperarContraseña'
 import {auth} from "./componentes/firebase/usuarios"
 import {useState, useEffect} from 'react'
-// import Logo from './assets/img/logohd.jpg'
+// import Logo from './componentes/img/carro11.jpg'
 
 
 
@@ -29,30 +29,35 @@ function App() {
       }
 
     })
-  })
+  });
+
+
   return firebaseUser !== false ? ( 
   
 
     <Router>
+      
       <div>
    
       
         <Navbar firebaseUser={firebaseUser} />
+        
         {/* <img src={Logo} alt="" width="30" height="24" class="d-inline-block align-text-top"/> */}
         <Switch>
+          
           <Route path='/' exact component={Inicio}/>
           <Route path='/Servicios' component={Servicios}/>
-          <Route path='/Contactanos' component={Contactanos}/>
+          <Route path='/mensajeChecked' component={MensajeChecked}/>
           <Route path='/Trabaja-con-nosotros' component={TrabajaConNosotros}/>
           <Route path='/Registrarse' component={Registrarse}/>
           <Route path='/IniciarSesion' component={IniciarSesion}/>
           <Route path='/RecuperarContraseña' component={RecuperarContraseña}/>
-          {/* <Route path='/logohd' component={Logo}/> */}
         </Switch>
         
         
         </div>
       </Router>
+
 
 
 
@@ -62,5 +67,7 @@ function App() {
   <div>Cargando...</div>
 )
 }
+
+
 
 export default App;

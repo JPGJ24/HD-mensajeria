@@ -80,7 +80,7 @@ const recuperar = useCallback(
     <div className='mt-5'>
     <h3 className='text-center'>Recupera tu contraseña</h3>
       
-      <div className='row justify-content-center'>
+      <div className='row justify-content-center md:w-1/2 lg:w-2/5 mx-5'>
         <div className='col-12 col-sm-8 col-md-6 col-xl-4'>
 
                     <form onSubmit={handleSubmit}>
