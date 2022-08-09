@@ -1,14 +1,14 @@
-import React from 'react'
-import {useState} from 'react'
+import React from 'react';
+import {useState} from 'react';
 import { useHistory } from "react-router-dom";
-import { auth } from '../firebase/usuarios';
-import { sendPasswordResetEmail} from "firebase/auth"
-import{useCallback} from 'react'
+import { auth } from '../firebase/Users';
+import { sendPasswordResetEmail} from "firebase/auth";
+import{useCallback} from 'react';
 
-const RecuperarContraseña = () => {
+const PasswordReset = () => {
 
     const [user, setUser] = useState({email: ''});
-    const history = useHistory()
+    const history = useHistory();
     const [error, setError] = useState();
 
     const handleChange= ({target: {name,value}}) =>
@@ -18,10 +18,9 @@ const RecuperarContraseña = () => {
          e.preventDefault()
   
   try {
-    recuperar()
+    retrieve()
   
   } catch (error) {
-    console.log(error)
     setError(error.message)
 
   if(error.code === 'auth/invalid-email'){
@@ -45,12 +44,12 @@ const RecuperarContraseña = () => {
   }
   
 }
-const recuperar = useCallback(
+const retrieve = useCallback(
     async () => {
         try {
             await sendPasswordResetEmail(auth, user.email)
                 console.log('correo enviado')
-            history.push('/IniciarSesion')
+            history.push('/login')
          
             
         } catch (error) {
@@ -77,37 +76,28 @@ const recuperar = useCallback(
 
 
   return (
-    <div className='mt-5'>
-    <h3 className='text-center'>Recupera tu contraseña</h3>
-      
-      <div className='row justify-content-center md:w-1/2 lg:w-2/5 mx-5'>
-        <div className='col-12 col-sm-8 col-md-6 col-xl-4'>
-
+        <div className='mt-5'>
+            <h3 className='text-center'>Recupera tu contraseña</h3>  
+              <div className='row justify-content-center md:w-1/2 lg:w-2/5 mx-5'>
+                <div className='col-12 col-sm-8 col-md-6 col-xl-4'>
                     <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                      <label htmlFor="email" className="col-form-label">Correo electronico</label>
-                      <input type="email"
-                              name="email"
-                              placeholder="example@example.com"
-                              className="form-control" 
-                              onChange={handleChange}/>
-                    </div>
-
-
-                  {error &&<p className="alert alert-danger" role="alert">{error}</p>}
-
-                  <button className="btn btn-dark w-100 btn-block mb-2"  type='submit' >Enviar</button>
-
-              </form>
-
-        </div>
-      </div>
-  
-
-        
-        
-</div>
+                        <div className="mb-3">
+                             <label htmlFor="email"
+                                    className="col-form-label">Correo electronico
+                             </label>
+                             <input type="email"
+                                    name="email"
+                                    placeholder="example@example.com"
+                                    className="form-control" 
+                                    onChange={handleChange}/>
+                        </div>
+          {error &&<p className="alert alert-danger" role="alert">{error}</p>}
+                        <button className="btn btn-dark w-100 btn-block mb-2"  type='submit' >Enviar</button>
+                    </form>
+                </div>
+              </div>        
+          </div>
   )
-}
+};
 
-export default RecuperarContraseña
+export default PasswordReset;

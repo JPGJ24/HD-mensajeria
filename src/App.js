@@ -1,73 +1,54 @@
 import React from 'react';
-import MensajeChecked from './componentes/paginas/mensajeChecked.js';
-import Navbar from './componentes/navegacion/Navbar.js';
-import Inicio from './componentes/paginas/Inicio.js';
-import Servicios from './componentes/paginas/Servicios.js';
-import TrabajaConNosotros from './componentes/paginas/Trabaja-con-nosotros.js';
-import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
-import IniciarSesion from './componentes/login/IniciarSesion.js';
-import Registrarse from './componentes/login/Registrarse.js';
-import RecuperarContraseña from './componentes/login/RecuperarContraseña'
-import {auth} from "./componentes/firebase/usuarios"
-import {useState, useEffect} from 'react'
-// import Logo from './componentes/img/carro11.jpg'
-
-
-
+import Navbar from './componentes/navegacion/navbar.js';
+import Home from './componentes/paginas/home.js';
+import Services from './componentes/paginas/services.js';
+import Login from './componentes/login/login.js';
+import CreateUser from './componentes/login/create-user.js';
+import PasswordReset from './componentes/login/password-reset';
+import MessagesChecked from './componentes/mensajes/messages-checked.js';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {auth} from "./componentes/firebase/Users";
+import {useState, useEffect} from 'react';
 
 
 function App() {
-  const [firebaseUser, setFirebaseUser] = useState(false)
+  const [firebaseUser, setFirebaseUser] = useState(false);
 
-  useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      console.log(user)
-      if(user){
-        setFirebaseUser(user)
-      }else {
-        setFirebaseUser(null)
-      }
-
-    })
-  });
-
-
+          useEffect(() => {
+            auth.onAuthStateChanged(user => {
+              if(user){
+                setFirebaseUser(user);
+              }else {
+                setFirebaseUser(null);
+              }
+            })
+          });
   return firebaseUser !== false ? ( 
   
 
     <Router>
-      
       <div>
-   
-      
-        <Navbar firebaseUser={firebaseUser} />
-        
-        {/* <img src={Logo} alt="" width="30" height="24" class="d-inline-block align-text-top"/> */}
-        <Switch>
-          
-          <Route path='/' exact component={Inicio}/>
-          <Route path='/Servicios' component={Servicios}/>
-          <Route path='/mensajeChecked' component={MensajeChecked}/>
-          <Route path='/Trabaja-con-nosotros' component={TrabajaConNosotros}/>
-          <Route path='/Registrarse' component={Registrarse}/>
-          <Route path='/IniciarSesion' component={IniciarSesion}/>
-          <Route path='/RecuperarContraseña' component={RecuperarContraseña}/>
-        </Switch>
-        
-        
-        </div>
-      </Router>
-
-
-
-
-  
-
+            <Navbar firebaseUser={firebaseUser} />
+            <Switch>
+                  <Route path='/' exact component={Home}/>
+                  <Route path='/services' component={Services}/>
+                  <Route path='/messages-checked' component={MessagesChecked}/>
+                  <Route path='/create-user' component={CreateUser}/>
+                  <Route path='/login' component={Login}/>
+                  <Route path='/password-reset' component={PasswordReset}/>
+            </Switch>
+      </div>
+    </Router>
 ) : (
-  <div>Cargando...</div>
+  <div className="sk-chase">
+  <div className="sk-chase-dot"></div>
+  <div className="sk-chase-dot"></div>
+  <div className="sk-chase-dot"></div>
+  <div className="sk-chase-dot"></div>
+  <div className="sk-chase-dot"></div>
+  <div className="sk-chase-dot"></div>
+</div>
 )
 }
-
-
 
 export default App;
